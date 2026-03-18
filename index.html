@@ -45,9 +45,9 @@
   .input-row { display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; }
   .field { display:flex; flex-direction:column; gap:6px; }
   .field label { font-size:11px; color:var(--text3); font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:1.5px; }
-  input[type=number], input[type=date], input[type=text], input[type=password], select {
+  input[type=number], input[type=date], input[type=text], input[type=password], input[type=url], select {
     background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm);
-    color:var(--text); font-family:'DM Mono',monospace; font-size:15px; padding:10px 14px;
+    color:var(--text); font-family:'DM Mono',monospace; font-size:14px; padding:10px 14px;
     outline:none; transition:border-color .2s, background .2s; -moz-appearance:textfield;
   }
   input[type=number]::-webkit-inner-spin-button { -webkit-appearance:none; }
@@ -93,26 +93,28 @@
   .section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px; }
   .section-title { font-family:'DM Serif Display',serif; font-size:1.5rem; color:var(--text); }
 
-  /* SHEETS PANEL */
-  .sheets-panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:16px; }
-  .sheets-header { display:flex; align-items:center; gap:12px; padding:16px 24px; cursor:pointer; user-select:none; transition:background .15s; }
-  .sheets-header:hover { background:var(--surface2); }
-  .sheets-title { font-family:'DM Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--text2); }
-  .sheets-status { margin-left:auto; font-family:'DM Mono',monospace; font-size:11px; color:var(--text3); }
-  .sheets-chevron { color:var(--text3); transition:transform .2s; font-size:11px; }
-  .sheets-chevron.open { transform:rotate(180deg); }
-  .sheets-body { border-top:1px solid var(--border); padding:24px; display:none; }
-  .sheets-body.open { display:block; }
-  .setup-steps { display:flex; flex-direction:column; gap:16px; margin-bottom:24px; padding:20px; background:var(--surface2); border-radius:var(--radius-sm); border:1px solid var(--border); }
-  .setup-step { display:flex; gap:12px; font-size:13px; color:var(--text2); line-height:1.6; }
-  .step-n { width:22px; height:22px; border-radius:50%; background:var(--surface3); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:10px; color:var(--accent); flex-shrink:0; margin-top:1px; }
-  .setup-step a { color:var(--accent); text-decoration:none; }
-  .setup-step a:hover { text-decoration:underline; }
-  .setup-step code { font-family:'DM Mono',monospace; background:var(--surface3); padding:1px 5px; border-radius:3px; font-size:12px; color:var(--text); }
-  .creds-grid { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; margin-bottom:16px; }
-  .sheets-actions { display:flex; gap:10px; flex-wrap:wrap; }
-  .sheets-msg { font-family:'DM Mono',monospace; font-size:12px; color:var(--text3); margin-top:12px; min-height:18px; }
-  .sheets-msg.ok { color:var(--accent2); } .sheets-msg.err { color:var(--accent3); }
+  /* SYNC PANEL */
+  .sync-panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:16px; }
+  .sync-panel-header { display:flex; align-items:center; gap:12px; padding:16px 24px; cursor:pointer; user-select:none; transition:background .15s; }
+  .sync-panel-header:hover { background:var(--surface2); }
+  .sync-panel-title { font-family:'DM Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--text2); }
+  .sync-panel-status { margin-left:auto; font-family:'DM Mono',monospace; font-size:11px; color:var(--text3); }
+  .sync-panel-chevron { color:var(--text3); transition:transform .2s; font-size:11px; }
+  .sync-panel-chevron.open { transform:rotate(180deg); }
+  .sync-panel-body { border-top:1px solid var(--border); padding:24px; display:none; }
+  .sync-panel-body.open { display:block; }
+
+  .steps-box { background:var(--surface2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px; margin-bottom:22px; display:flex; flex-direction:column; gap:14px; }
+  .step-row { display:flex; gap:12px; font-size:13px; color:var(--text2); line-height:1.65; }
+  .step-n { width:22px; height:22px; border-radius:50%; background:var(--surface3); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:10px; color:var(--accent); flex-shrink:0; margin-top:2px; }
+  .step-row a { color:var(--accent); text-decoration:none; }
+  .step-row a:hover { text-decoration:underline; }
+  .step-row code { font-family:'DM Mono',monospace; background:var(--surface3); padding:1px 6px; border-radius:3px; font-size:12px; color:var(--text); word-break:break-all; }
+
+  .url-row { display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; margin-bottom:14px; }
+  .sync-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .sync-msg { font-family:'DM Mono',monospace; font-size:12px; color:var(--text3); margin-top:12px; min-height:18px; }
+  .sync-msg.ok { color:var(--accent2); } .sync-msg.err { color:var(--accent3); }
 
   ::-webkit-scrollbar { width:6px; }
   ::-webkit-scrollbar-track { background:var(--surface); }
@@ -136,42 +138,56 @@
   </div>
 </header>
 
-<!-- GOOGLE SHEETS SYNC -->
-<div class="sheets-panel">
-  <div class="sheets-header" onclick="toggleSheets()">
+<!-- SYNC PANEL -->
+<div class="sync-panel">
+  <div class="sync-panel-header" onclick="toggleSyncPanel()">
     <span style="font-size:18px">📊</span>
-    <div class="sheets-title">Google Sheets Sync</div>
-    <div class="sheets-status" id="sheetsStatus">Not configured</div>
-    <div class="sheets-chevron" id="sheetsChevron">▼</div>
+    <div class="sync-panel-title">Google Sheets Sync</div>
+    <div class="sync-panel-status" id="syncPanelStatus">Not configured</div>
+    <div class="sync-panel-chevron" id="syncChevron">▼</div>
   </div>
-  <div class="sheets-body" id="sheetsBody">
-    <div class="setup-steps">
-      <div class="setup-step"><div class="step-n">1</div><div>Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a> → create a project → enable <strong>Google Sheets API</strong> → Credentials → <strong>Create API Key</strong>. Restrict it to the Sheets API only.</div></div>
-      <div class="setup-step"><div class="step-n">2</div><div>Open <a href="https://sheets.new" target="_blank">sheets.new</a> to create a new spreadsheet. Row 1 should have headers: <code>Date</code> | <code>Weight_lbs</code> | <code>Note</code>. Set sharing to <strong>"Anyone with the link → Editor"</strong>.</div></div>
-      <div class="setup-step"><div class="step-n">3</div><div>Copy the <strong>Sheet ID</strong> from the URL bar: <code>docs.google.com/spreadsheets/d/<strong>[SHEET_ID]</strong>/edit</code></div></div>
-      <div class="setup-step"><div class="step-n">4</div><div>Paste both below and click <strong>Connect & Pull</strong>. Your data will sync automatically on every log entry.</div></div>
-    </div>
-    <div class="creds-grid">
-      <div class="field">
-        <label>API Key</label>
-        <input type="password" id="gsApiKey" placeholder="AIzaSy..." style="width:250px" autocomplete="off">
+  <div class="sync-panel-body" id="syncPanelBody">
+
+    <div class="steps-box">
+      <div class="step-row">
+        <div class="step-n">1</div>
+        <div>Open your Google Sheet → click <strong>Extensions</strong> in the menu bar → <strong>Apps Script</strong>. A new tab opens with a code editor.</div>
       </div>
-      <div class="field">
-        <label>Sheet ID</label>
-        <input type="text" id="gsSheetId" placeholder="1BxiMVs0XRA5nFMdKvBd..." style="width:290px">
+      <div class="step-row">
+        <div class="step-n">2</div>
+        <div>Select all the default code and delete it. Paste in the Apps Script code from the README, then click <strong>Save</strong> (💾 or Ctrl+S).</div>
       </div>
-      <div class="field">
-        <label>Tab name</label>
-        <input type="text" id="gsSheetName" placeholder="Sheet1" style="width:100px">
+      <div class="step-row">
+        <div class="step-n">3</div>
+        <div>Click <strong>Deploy → New deployment</strong>. Click the ⚙️ gear next to "Select type" and choose <strong>Web app</strong>.</div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">4</div>
+        <div>Set <strong>Execute as: Me</strong> and <strong>Who has access: Anyone</strong>. Click <strong>Deploy</strong>.</div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">5</div>
+        <div>Google will ask you to authorize — click <strong>Review permissions → Advanced → Go to WeightLog (unsafe)</strong> → <strong>Allow</strong>. (The "unsafe" warning is just because the app isn't published in the Workspace Marketplace — it's your own script.)</div>
+      </div>
+      <div class="step-row">
+        <div class="step-n">6</div>
+        <div>Copy the <strong>Web app URL</strong> — it starts with <code>https://script.google.com/macros/s/</code> — and paste it below.</div>
       </div>
     </div>
-    <div class="sheets-actions">
-      <button class="btn" onclick="connectSheets()">Connect &amp; Pull</button>
-      <button class="btn btn-ghost" id="btnPush" onclick="pushToSheets()" disabled>↑ Push all</button>
-      <button class="btn btn-ghost" id="btnPull" onclick="pullFromSheets()" disabled>↓ Pull latest</button>
-      <button class="btn btn-ghost btn-sm" onclick="disconnectSheets()" style="color:var(--accent3);border-color:var(--accent3);margin-left:auto">Disconnect</button>
+
+    <div class="url-row">
+      <div class="field" style="flex:1;min-width:280px">
+        <label>Apps Script Web App URL</label>
+        <input type="url" id="gsUrl" placeholder="https://script.google.com/macros/s/.../exec" style="width:100%">
+      </div>
     </div>
-    <div class="sheets-msg" id="sheetsMsg"></div>
+    <div class="sync-actions">
+      <button class="btn" onclick="connectScript()">Connect &amp; Pull</button>
+      <button class="btn btn-ghost" id="btnPush" onclick="pushToScript()" disabled>↑ Push all</button>
+      <button class="btn btn-ghost" id="btnPull" onclick="pullFromScript()" disabled>↓ Pull latest</button>
+      <button class="btn btn-ghost btn-sm" onclick="disconnectScript()" style="color:var(--accent3);border-color:var(--accent3);margin-left:auto">Disconnect</button>
+    </div>
+    <div class="sync-msg" id="syncMsg"></div>
   </div>
 </div>
 
@@ -254,12 +270,12 @@
   </div>
 </div>
 
-</div><!-- /.app -->
+</div>
 
 <script>
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let unit='lbs', chartRange=30, chart=null, entries=[], goalWeight=null, goalDate=null;
-let gsApiKey='', gsSheetId='', gsSheetName='Sheet1', gsConnected=false;
+let gsUrl='', gsConnected=false;
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 function init(){
@@ -267,10 +283,8 @@ function init(){
   unit=localStorage.getItem('wl_unit')||'lbs';
   goalWeight=parseFloat(localStorage.getItem('wl_goal'))||null;
   goalDate=localStorage.getItem('wl_goalDate')||null;
-  gsApiKey=localStorage.getItem('gs_apikey')||'';
-  gsSheetId=localStorage.getItem('gs_sheetid')||'';
-  gsSheetName=localStorage.getItem('gs_sheetname')||'Sheet1';
-  gsConnected=!!(gsApiKey&&gsSheetId);
+  gsUrl=localStorage.getItem('gs_url')||'';
+  gsConnected=!!gsUrl;
 
   document.getElementById('bmiHFt').value=localStorage.getItem('bmi_ft')||'';
   document.getElementById('bmiHIn').value=localStorage.getItem('bmi_in')||'';
@@ -278,9 +292,7 @@ function init(){
   document.getElementById('inputDate').value=today();
   if(goalWeight) document.getElementById('goalWeight').value=disp(goalWeight);
   if(goalDate) document.getElementById('goalDate').value=goalDate;
-  if(gsApiKey) document.getElementById('gsApiKey').value=gsApiKey;
-  if(gsSheetId) document.getElementById('gsSheetId').value=gsSheetId;
-  document.getElementById('gsSheetName').value=gsSheetName;
+  if(gsUrl) document.getElementById('gsUrl').value=gsUrl;
 
   setUnit(unit,true);
   updateSyncUI();
@@ -322,8 +334,8 @@ async function logWeight(){
   let msg='✓ Logged '+disp(w)+' '+unit+' on '+date;
   if(gsConnected){
     setSyncState('syncing','Syncing...');
-    const ok=await pushToSheets(true);
-    msg+=ok?' · synced to Sheets ✓':' · saved locally (Sheets sync failed)';
+    const ok=await pushToScript(true);
+    msg+=ok?' · synced to Sheets ✓':' · saved locally (sync failed)';
     setSyncState(ok?'connected':'error',ok?'Synced':'Sync error');
   }
   showAlert(alertEl,msg,true);
@@ -335,17 +347,15 @@ function deleteEntry(date){
   if(!confirm('Delete entry for '+date+'?')) return;
   entries=entries.filter(e=>e.date!==date);
   save(); render();
-  if(gsConnected) pushToSheets(true);
+  if(gsConnected) pushToScript(true);
 }
 
 function save(){ localStorage.setItem('wl_entries',JSON.stringify(entries)); }
 
 function showAlert(el,msg,good){
-  el.textContent=msg;
-  el.style.borderLeftColor=good?'var(--accent)':'var(--accent3)';
-  el.classList.add('show');
-  clearTimeout(el._t);
-  el._t=setTimeout(()=>el.classList.remove('show'),4000);
+  el.textContent=msg; el.style.borderLeftColor=good?'var(--accent)':'var(--accent3)';
+  el.classList.add('show'); clearTimeout(el._t);
+  el._t=setTimeout(()=>el.classList.remove('show'),4500);
 }
 
 // ─── RENDER ───────────────────────────────────────────────────────────────────
@@ -360,16 +370,13 @@ function renderStats(){
     const tStr=target.toISOString().slice(0,10);
     const prior=entries.filter(e=>e.date<=tStr&&e.date!==latest.date);
     const ref=prior.length?prior[prior.length-1]:null;
-    const sv=document.getElementById('sv-'+c.key);
-    const sd=document.getElementById('sd-'+c.key);
-    if(!ref){ sv.textContent=disp(latest.weight); sv.className='stat-value'; sd.textContent='No prior entry'; sd.className='stat-delta delta-neutral'; }
-    else{
-      const diff=latest.weight-ref.weight;
-      sv.textContent=disp(latest.weight);
-      sv.className='stat-value'+(diff>0?' positive':diff<0?' negative':'');
-      if(diff===0){sd.textContent='No change';sd.className='stat-delta delta-neutral';}
-      else{sd.textContent=(diff>0?'▲ +':'▼ −')+disp(Math.abs(diff))+' '+unit+' vs '+ref.date; sd.className='stat-delta '+(diff>0?'delta-up':'delta-down');}
-    }
+    const sv=document.getElementById('sv-'+c.key), sd=document.getElementById('sd-'+c.key);
+    if(!ref){ sv.textContent=disp(latest.weight); sv.className='stat-value'; sd.textContent='No prior entry'; sd.className='stat-delta delta-neutral'; return; }
+    const diff=latest.weight-ref.weight;
+    sv.textContent=disp(latest.weight);
+    sv.className='stat-value'+(diff>0?' positive':diff<0?' negative':'');
+    if(diff===0){sd.textContent='No change';sd.className='stat-delta delta-neutral';}
+    else{sd.textContent=(diff>0?'▲ +':'▼ −')+disp(Math.abs(diff))+' '+unit+' vs '+ref.date; sd.className='stat-delta '+(diff>0?'delta-up':'delta-down');}
   });
 }
 
@@ -380,13 +387,10 @@ function renderChart(){
   const ctx=document.getElementById('weightChart').getContext('2d');
   let filtered=[...entries];
   if(chartRange>0){ const c=new Date(); c.setDate(c.getDate()-chartRange); filtered=entries.filter(e=>e.date>=c.toISOString().slice(0,10)); }
-  const labels=filtered.map(e=>e.date);
-  const weights=filtered.map(e=>disp(e.weight));
-  const avg7=movingAvg(weights,7);
+  const labels=filtered.map(e=>e.date), weights=filtered.map(e=>disp(e.weight)), avg7=movingAvg(weights,7);
   let goalLine=[];
   if(goalWeight&&goalDate&&filtered.length){
-    const sd2=new Date(goalDate+'T12:00:00');
-    const se=entries.find(e=>e.date>=goalDate);
+    const sd2=new Date(goalDate+'T12:00:00'), se=entries.find(e=>e.date>=goalDate);
     const sw=se?disp(se.weight):(entries.length?disp(entries[0].weight):null);
     if(sw!==null) goalLine=labels.map(d=>{ const days=(new Date(d+'T12:00:00')-sd2)/86400000; const rate=unit==='kg'?(2/2.20462/30):(2/30); return +(sw-rate*days).toFixed(2); });
   }
@@ -396,16 +400,13 @@ function renderChart(){
   ];
   if(goalLine.length) datasets.push({label:'Goal (−2/mo)',data:goalLine,borderColor:'rgba(74,159,224,0.7)',borderDash:[4,4],pointRadius:0,tension:0.1,fill:false,order:4});
   const allVals=weights.concat(avg7).concat(goalLine);
-  const minV=allVals.length?Math.min(...allVals)-2:100;
-  const maxV=allVals.length?Math.max(...allVals)+2:200;
+  const minV=allVals.length?Math.min(...allVals)-2:100, maxV=allVals.length?Math.max(...allVals)+2:200;
   if(chart) chart.destroy();
   chart=new Chart(ctx,{type:'line',data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:'#1c1f1e',borderColor:'#2a2e2c',borderWidth:1,titleColor:'#8a9490',bodyColor:'#e8ede9',titleFont:{family:'DM Mono',size:11},bodyFont:{family:'DM Mono',size:13},padding:12,callbacks:{title:i=>i[0].label,label:i=>`${i.dataset.label}: ${i.parsed.y.toFixed(1)} ${unit}`}}},scales:{x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#5a6460',font:{family:'DM Mono',size:10},maxTicksLimit:8,maxRotation:0}},y:{min:minV,max:maxV,grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'#5a6460',font:{family:'DM Mono',size:10},callback:v=>v.toFixed(0)+' '+unit}}}}});
 }
 
 function renderTable(){
-  const tbody=document.getElementById('historyBody');
-  const empty=document.getElementById('historyEmpty');
-  const table=document.getElementById('historyTable');
+  const tbody=document.getElementById('historyBody'), empty=document.getElementById('historyEmpty'), table=document.getElementById('historyTable');
   if(!entries.length){empty.style.display='';table.style.display='none';return;}
   empty.style.display='none'; table.style.display='';
   const rev=[...entries].reverse();
@@ -423,7 +424,7 @@ function renderTable(){
 // ─── BMI ──────────────────────────────────────────────────────────────────────
 function calcBMI(){
   let heightM;
-  if(unit==='lbs'){ const ft=parseFloat(document.getElementById('bmiHFt').value)||0; const inch=parseFloat(document.getElementById('bmiHIn').value)||0; localStorage.setItem('bmi_ft',ft); localStorage.setItem('bmi_in',inch); if(!ft&&!inch){hideBMI();return;} heightM=(ft*12+inch)*0.0254; }
+  if(unit==='lbs'){ const ft=parseFloat(document.getElementById('bmiHFt').value)||0, inch=parseFloat(document.getElementById('bmiHIn').value)||0; localStorage.setItem('bmi_ft',ft); localStorage.setItem('bmi_in',inch); if(!ft&&!inch){hideBMI();return;} heightM=(ft*12+inch)*0.0254; }
   else{ const cm=parseFloat(document.getElementById('bmiHCm').value)||0; localStorage.setItem('bmi_cm',cm); if(!cm){hideBMI();return;} heightM=cm/100; }
   const latestW=entries.length?entries[entries.length-1].weight:null;
   if(!latestW){hideBMI();return;}
@@ -432,12 +433,8 @@ function calcBMI(){
   document.getElementById('bmiEmpty').style.display='none';
   document.getElementById('bmiValue').textContent=bmi.toFixed(1);
   let cat,color;
-  if(bmi<18.5){cat='Underweight';color='#4a9fe0';}
-  else if(bmi<25){cat='Normal weight';color='#b8e04a';}
-  else if(bmi<30){cat='Overweight';color='#e0c44a';}
-  else{cat='Obese';color='#e04a7a';}
-  document.getElementById('bmiCat').textContent=cat;
-  document.getElementById('bmiCat').style.color=color;
+  if(bmi<18.5){cat='Underweight';color='#4a9fe0';}else if(bmi<25){cat='Normal weight';color='#b8e04a';}else if(bmi<30){cat='Overweight';color='#e0c44a';}else{cat='Obese';color='#e04a7a';}
+  document.getElementById('bmiCat').textContent=cat; document.getElementById('bmiCat').style.color=color;
   document.getElementById('bmiNeedle').style.left=Math.min(100,Math.max(0,(bmi-16)/(40-16)*100))+'%';
 }
 function hideBMI(){document.getElementById('bmiResult').style.display='none';document.getElementById('bmiEmpty').style.display='';}
@@ -453,8 +450,7 @@ function saveGoal(){
 function updateGoalETA(){
   const el=document.getElementById('goalETA');
   if(!goalWeight||!entries.length){el.textContent='';return;}
-  const latest=entries[entries.length-1];
-  const diff=latest.weight-goalWeight;
+  const latest=entries[entries.length-1], diff=latest.weight-goalWeight;
   if(diff<=0){el.innerHTML='<span style="color:var(--accent)">🎯 Goal reached!</span>';return;}
   const eta=new Date(); eta.setDate(eta.getDate()+(diff/2)*30.44);
   el.innerHTML=`<span style="color:var(--text2)">${disp(Math.abs(diff))} ${unit} to go · ETA <strong style="color:var(--accent)">${eta.toLocaleDateString('en-CA',{month:'short',year:'numeric'})}</strong> at −2/mo</span>`;
@@ -470,104 +466,102 @@ function exportCSV(){
   a.download='weightlog.csv'; a.click();
 }
 
-// ─── GOOGLE SHEETS ────────────────────────────────────────────────────────────
-function toggleSheets(){
-  document.getElementById('sheetsBody').classList.toggle('open');
-  document.getElementById('sheetsChevron').classList.toggle('open');
+// ─── APPS SCRIPT SYNC ─────────────────────────────────────────────────────────
+function toggleSyncPanel(){
+  document.getElementById('syncPanelBody').classList.toggle('open');
+  document.getElementById('syncChevron').classList.toggle('open');
 }
 
-function updateSyncUI(){
-  const connected=gsConnected;
-  document.getElementById('btnPush').disabled=!connected;
-  document.getElementById('btnPull').disabled=!connected;
-  document.getElementById('sheetsStatus').textContent=connected?'Connected · '+gsSheetName:'Not configured';
-  document.getElementById('sheetsStatus').style.color=connected?'var(--accent2)':'var(--text3)';
-  setSyncState(connected?'connected':'local', connected?'Sheets synced':'Local only');
+function setSyncMsg(msg,type=''){
+  const el=document.getElementById('syncMsg'); el.textContent=msg; el.className='sync-msg'+(type?' '+type:'');
 }
 
 function setSyncState(state,label){
-  const badge=document.getElementById('syncBadge');
-  const dot=document.getElementById('syncDot');
+  const badge=document.getElementById('syncBadge'), dot=document.getElementById('syncDot');
   badge.className='sync-badge'+(state!=='local'?' '+state:'');
   dot.className='sync-dot'+(state==='syncing'?' pulse':'');
   document.getElementById('syncLabel').textContent=label;
 }
 
-function setSheetsMsg(msg,type=''){
-  const el=document.getElementById('sheetsMsg');
-  el.textContent=msg; el.className='sheets-msg'+(type?' '+type:'');
+function updateSyncUI(){
+  document.getElementById('btnPush').disabled=!gsConnected;
+  document.getElementById('btnPull').disabled=!gsConnected;
+  document.getElementById('syncPanelStatus').textContent=gsConnected?'Connected':'Not configured';
+  document.getElementById('syncPanelStatus').style.color=gsConnected?'var(--accent2)':'var(--text3)';
+  setSyncState(gsConnected?'connected':'local', gsConnected?'Sheets synced':'Local only');
 }
 
-async function connectSheets(){
-  const key=document.getElementById('gsApiKey').value.trim();
-  const id=document.getElementById('gsSheetId').value.trim();
-  const name=document.getElementById('gsSheetName').value.trim()||'Sheet1';
-  if(!key||!id){setSheetsMsg('⚠ API Key and Sheet ID are both required.','err');return;}
-  setSheetsMsg('Testing connection...','');
+async function connectScript(){
+  const url=document.getElementById('gsUrl').value.trim();
+  if(!url||!url.includes('script.google.com')){setSyncMsg('⚠ Please enter a valid Apps Script Web App URL.','err');return;}
+  setSyncMsg('Testing connection...','');
   setSyncState('syncing','Connecting...');
   try{
-    const url=`https://sheets.googleapis.com/v4/spreadsheets/${id}/values/${encodeURIComponent(name+'!A1:C1')}?key=${key}`;
-    const res=await fetch(url);
-    if(!res.ok){const e=await res.json();throw new Error(e.error?.message||'HTTP '+res.status);}
-    gsApiKey=key; gsSheetId=id; gsSheetName=name; gsConnected=true;
-    localStorage.setItem('gs_apikey',key); localStorage.setItem('gs_sheetid',id); localStorage.setItem('gs_sheetname',name);
+    // Test with a GET request
+    const res=await fetch(url, {redirect:'follow'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    if(!data.ok) throw new Error(data.error||'Script returned an error');
+    gsUrl=url; gsConnected=true;
+    localStorage.setItem('gs_url',url);
     updateSyncUI();
-    setSheetsMsg('✓ Connected! Pulling data from sheet...','ok');
-    await pullFromSheets();
+    setSyncMsg('✓ Connected! Pulling data...','ok');
+    // Merge remote into local
+    const remote=data.entries||[];
+    const remoteMap={}; remote.forEach(r=>remoteMap[r.date]=r);
+    const localOnly=entries.filter(e=>!remoteMap[e.date]);
+    entries=[...localOnly,...remote].sort((a,b)=>a.date.localeCompare(b.date));
+    save(); render();
+    setSyncMsg(`✓ Connected. Pulled ${remote.length} entries from Sheets.`+(localOnly.length?` (${localOnly.length} local entries merged).`:''),'ok');
   }catch(e){
-    setSheetsMsg('✗ Connection failed: '+e.message,'err');
+    setSyncMsg('✗ Connection failed: '+e.message+'. Make sure you deployed as "Anyone" and the URL ends in /exec','err');
     setSyncState('error','Connection failed');
   }
 }
 
-function disconnectSheets(){
-  gsConnected=false; gsApiKey=''; gsSheetId='';
-  localStorage.removeItem('gs_apikey'); localStorage.removeItem('gs_sheetid');
-  document.getElementById('gsApiKey').value='';
-  document.getElementById('gsSheetId').value='';
-  updateSyncUI();
-  setSheetsMsg('Disconnected.','');
+function disconnectScript(){
+  gsConnected=false; gsUrl='';
+  localStorage.removeItem('gs_url');
+  document.getElementById('gsUrl').value='';
+  updateSyncUI(); setSyncMsg('Disconnected.','');
 }
 
-async function pullFromSheets(){
+async function pullFromScript(){
   if(!gsConnected) return;
-  setSyncState('syncing','Pulling...');
-  setSheetsMsg('Fetching from Sheets...','');
+  setSyncState('syncing','Pulling...'); setSyncMsg('Fetching from Sheets...','');
   try{
-    const url=`https://sheets.googleapis.com/v4/spreadsheets/${gsSheetId}/values/${encodeURIComponent(gsSheetName+'!A2:C10000')}?key=${gsApiKey}`;
-    const res=await fetch(url);
-    if(!res.ok){const e=await res.json();throw new Error(e.error?.message||'HTTP '+res.status);}
+    const res=await fetch(gsUrl,{redirect:'follow'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
     const data=await res.json();
-    const rows=(data.values||[]).map(r=>({date:r[0]||'',weight:parseFloat(r[1])||0,note:r[2]||''})).filter(r=>r.date&&r.weight>0);
-    // Merge: remote wins for existing dates; keep local-only entries
-    const remoteMap={}; rows.forEach(r=>remoteMap[r.date]=r);
+    if(!data.ok) throw new Error(data.error||'Script error');
+    const remote=data.entries||[];
+    const remoteMap={}; remote.forEach(r=>remoteMap[r.date]=r);
     const localOnly=entries.filter(e=>!remoteMap[e.date]);
-    entries=[...localOnly,...rows].sort((a,b)=>a.date.localeCompare(b.date));
+    entries=[...localOnly,...remote].sort((a,b)=>a.date.localeCompare(b.date));
     save(); render();
-    setSheetsMsg(`✓ Pulled ${rows.length} entries from Sheets.`+(localOnly.length>0?` (${localOnly.length} local-only entries kept)`:''),'ok');
+    setSyncMsg(`✓ Pulled ${remote.length} entries.`+(localOnly.length?` ${localOnly.length} local-only entries kept.`:''),'ok');
     setSyncState('connected','Synced');
   }catch(e){
-    setSheetsMsg('✗ Pull failed: '+e.message,'err');
-    setSyncState('error','Pull failed');
+    setSyncMsg('✗ Pull failed: '+e.message,'err'); setSyncState('error','Pull failed');
   }
 }
 
-async function pushToSheets(silent=false){
+async function pushToScript(silent=false){
   if(!gsConnected) return false;
-  if(!silent){setSyncState('syncing','Pushing...');setSheetsMsg('Writing to Sheets...','');}
+  if(!silent){setSyncState('syncing','Pushing...'); setSyncMsg('Writing to Sheets...','');}
   try{
-    // Clear rows A2:C then rewrite everything including header
-    const clearUrl=`https://sheets.googleapis.com/v4/spreadsheets/${gsSheetId}/values/${encodeURIComponent(gsSheetName+'!A2:C10000')}:clear?key=${gsApiKey}`;
-    const clearRes=await fetch(clearUrl,{method:'POST',headers:{'Content-Type':'application/json'}});
-    if(!clearRes.ok){const e=await clearRes.json();throw new Error(e.error?.message||'Clear failed');}
-    const values=[['Date','Weight_lbs','Note'],...entries.map(e=>[e.date,e.weight.toFixed(1),e.note||''])];
-    const writeUrl=`https://sheets.googleapis.com/v4/spreadsheets/${gsSheetId}/values/${encodeURIComponent(gsSheetName+'!A1')}?valueInputOption=RAW&key=${gsApiKey}`;
-    const writeRes=await fetch(writeUrl,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({values})});
-    if(!writeRes.ok){const e=await writeRes.json();throw new Error(e.error?.message||'Write failed');}
-    if(!silent){setSheetsMsg(`✓ Pushed ${entries.length} entries to Sheets.`,'ok');setSyncState('connected','Synced');}
+    const res=await fetch(gsUrl,{
+      method:'POST', redirect:'follow',
+      headers:{'Content-Type':'text/plain'}, // Apps Script requires text/plain for POST from browser
+      body:JSON.stringify({action:'push', entries:entries.map(e=>({date:e.date,weight:e.weight.toFixed(1),note:e.note||''}))})
+    });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    if(!data.ok) throw new Error(data.error||'Script error');
+    if(!silent){setSyncMsg(`✓ Pushed ${entries.length} entries to Sheets.`,'ok'); setSyncState('connected','Synced');}
     return true;
   }catch(e){
-    if(!silent){setSheetsMsg('✗ Push failed: '+e.message,'err');setSyncState('error','Push failed');}
+    if(!silent){setSyncMsg('✗ Push failed: '+e.message,'err'); setSyncState('error','Push failed');}
     return false;
   }
 }
