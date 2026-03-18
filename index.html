@@ -178,7 +178,7 @@
     <div class="url-row">
       <div class="field" style="flex:1;min-width:280px">
         <label>Apps Script Web App URL</label>
-        <input type="url" id="gsUrl" placeholder="https://script.google.com/macros/s/.../exec" style="width:100%">
+        <input type="url" id="gsUrl" placeholder="https://script.google.com/macros/s/AKfycbyygZ50n5rxVAsGnyAsPUu8Y-bByFcoKM1FrgqUhu5CLTegmgazLlx4mwGeweMlSx1hiw/exec" style="width:100%">
       </div>
     </div>
     <div class="sync-actions">
@@ -283,7 +283,7 @@ function init(){
   unit=localStorage.getItem('wl_unit')||'lbs';
   goalWeight=parseFloat(localStorage.getItem('wl_goal'))||null;
   goalDate=localStorage.getItem('wl_goalDate')||null;
-  gsUrl=localStorage.getItem('gs_url')||'';
+  gsUrl=localStorage.getItem('gs_url')||'https://script.google.com/macros/s/AKfycbyygZ50n5rxVAsGnyAsPUu8Y-bByFcoKM1FrgqUhu5CLTegmgazLlx4mwGeweMlSx1hiw/exec';
   gsConnected=!!gsUrl;
 
   document.getElementById('bmiHFt').value=localStorage.getItem('bmi_ft')||'';
@@ -292,7 +292,7 @@ function init(){
   document.getElementById('inputDate').value=today();
   if(goalWeight) document.getElementById('goalWeight').value=disp(goalWeight);
   if(goalDate) document.getElementById('goalDate').value=goalDate;
-  if(gsUrl) document.getElementById('gsUrl').value=gsUrl;
+  document.getElementById('gsUrl').value=gsUrl;
 
   setUnit(unit,true);
   updateSyncUI();
