@@ -359,7 +359,7 @@ function init(){
   unit=localStorage.getItem('wl_unit')||'lbs';
   goalWeight=parseFloat(localStorage.getItem('wl_goal'))||null;
   goalDate=localStorage.getItem('wl_goalDate')||null;
-  gsUrl=localStorage.getItem('gs_url')||'https://script.google.com/macros/s/AKfycbyttzW6RbCgigCJZZ2siH_YWnCb_UDSPKW5EZf4fRWf6VJCT3MyKGzk4XrTAcxkyf-KSw/exec';
+  gsUrl=localStorage.getItem('gs_url')||'https://script.google.com/macros/s/AKfycbySqhltTfTnkbOmhw6PfnZM5tGqjTsHC2Yys0BoCQWy5SKsUxkMnvhlYnP8hZ9ddGFHQw/exec';
   gsConnected=!!gsUrl;
 
   document.getElementById('bmiHFt').value=localStorage.getItem('bmi_ft')||'';
@@ -900,28 +900,40 @@ function updateSyncUI(){
   setSyncState(gsConnected?'connected':'local', gsConnected?'Sheets synced':'Local only');
 }
 
+function normaliseRemote(raw){
+  return (raw||[])
+    .map(r=>({
+      date: String(r.date||'').trim().replace(/^["']+|["']+$/g,''), // strip any wrapping quotes
+      weight: parseFloat(r.weight),
+      note: String(r.note||'')
+    }))
+    .filter(r=>/^\d{4}-\d{2}-\d{2}$/.test(r.date) && !isNaN(r.weight) && r.weight>0);
+}
+
+function mergeRemote(remote){
+  const remoteMap={};
+  remote.forEach(r=>remoteMap[r.date]=r);
+  const localOnly=entries.filter(e=>!remoteMap[e.date]);
+  entries=[...localOnly,...remote].sort((a,b)=>a.date.localeCompare(b.date));
+  save(); render();
+}
+
 async function connectScript(){
   const url=document.getElementById('gsUrl').value.trim();
   if(!url||!url.includes('script.google.com')){setSyncMsg('⚠ Please enter a valid Apps Script Web App URL.','err');return;}
   setSyncMsg('Testing connection...','');
   setSyncState('syncing','Connecting...');
   try{
-    // Test with a GET request
-    const res=await fetch(url, {redirect:'follow'});
+    const res=await fetch(url,{redirect:'follow'});
     if(!res.ok) throw new Error('HTTP '+res.status);
     const data=await res.json();
     if(!data.ok) throw new Error(data.error||'Script returned an error');
     gsUrl=url; gsConnected=true;
     localStorage.setItem('gs_url',url);
     updateSyncUI();
-    setSyncMsg('✓ Connected! Pulling data...','ok');
-    // Merge remote into local
-    const remote=data.entries||[];
-    const remoteMap={}; remote.forEach(r=>remoteMap[r.date]=r);
-    const localOnly=entries.filter(e=>!remoteMap[e.date]);
-    entries=[...localOnly,...remote].sort((a,b)=>a.date.localeCompare(b.date));
-    save(); render();
-    setSyncMsg(`✓ Connected. Pulled ${remote.length} entries from Sheets.`+(localOnly.length?` (${localOnly.length} local entries merged).`:''),'ok');
+    const remote=normaliseRemote(data.entries);
+    mergeRemote(remote);
+    setSyncMsg('✓ Connected. Pulled '+remote.length+' entries from Sheets.','ok');
   }catch(e){
     setSyncMsg('✗ Connection failed: '+e.message+'. Make sure you deployed as "Anyone" and the URL ends in /exec','err');
     setSyncState('error','Connection failed');
@@ -943,12 +955,9 @@ async function pullFromScript(){
     if(!res.ok) throw new Error('HTTP '+res.status);
     const data=await res.json();
     if(!data.ok) throw new Error(data.error||'Script error');
-    const remote=data.entries||[];
-    const remoteMap={}; remote.forEach(r=>remoteMap[r.date]=r);
-    const localOnly=entries.filter(e=>!remoteMap[e.date]);
-    entries=[...localOnly,...remote].sort((a,b)=>a.date.localeCompare(b.date));
-    save(); render();
-    setSyncMsg(`✓ Pulled ${remote.length} entries.`+(localOnly.length?` ${localOnly.length} local-only entries kept.`:''),'ok');
+    const remote=normaliseRemote(data.entries);
+    mergeRemote(remote);
+    setSyncMsg('✓ Pulled '+remote.length+' entries.','ok');
     setSyncState('connected','Synced');
   }catch(e){
     setSyncMsg('✗ Pull failed: '+e.message,'err'); setSyncState('error','Pull failed');
